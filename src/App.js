@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import "./App.css";
+import Weather from "./Weather.js";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <div className="container">
-          <p className="App-intro">Working on it</p>
+          <Weather />
           <footer>
             This project was coded by{" "}
             <a href="https://esethugagasi-porftlio.netlify.app" target="_blank">
