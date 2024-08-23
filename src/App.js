@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="container">
-          <Weather />
+          <Weather defaultCity="LIsbon" />
           <footer>
             This project was coded by{" "}
             <a href="https://esethugagasi-porftlio.netlify.app" target="_blank">
