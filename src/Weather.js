@@ -1,29 +1,29 @@
 import React, { useState } from "react";
-import "./Weather.css";
 import WeatherInfo from "./WeatherInfo";
+import WeatherForecast from "./WeatherForecast";
 import axios from "axios";
+import "./Weather.css";
 
 export default function Weather(props) {
-  // const [ready, setReady] = useState(false);
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
 
   function handleResponse(response) {
     setWeatherData({
       ready: true,
-      temperature: response.data.temperature.current,
-      humidity: response.data.temperature.humidity,
-      date: new Date(response.data.time * 1000),
-      description: response.data.condition.description,
-      icon_url: response.data.condition.icon_url,
+      coordinates: response.data.coord,
+      temperature: response.data.main.temp,
+      humidity: response.data.main.humidity,
+      date: new Date(response.data.dt * 1000),
+      description: response.data.weather[0].description,
+      icon: response.data.weather[0].icon,
       wind: response.data.wind.speed,
-      city: response.data.city,
+      city: response.data.name,
     });
   }
-  // handle submit
+
   function handleSubmit(event) {
     event.preventDefault();
-    // search for a city
     search();
   }
 
@@ -31,12 +31,9 @@ export default function Weather(props) {
     setCity(event.target.value);
   }
 
-  // handle serch
   function search() {
-    // city
-
-    let apiKey = "3b3ad749tf2ao70747b1aa602b14459d";
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
+    const apiKey = "5f472b7acba333cd8a035ea85a0d4d4c";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(handleResponse);
   }
 
@@ -58,16 +55,17 @@ export default function Weather(props) {
               <input
                 type="submit"
                 value="Search"
-                className="btn btn-primary w-120"
+                className="btn btn-primary w-100"
               />
             </div>
           </div>
         </form>
         <WeatherInfo data={weatherData} />
+        <WeatherForecast coordinates={weatherData.coordinates} />
       </div>
     );
   } else {
     search();
-    return "loading..";
+    return "Loading...";
   }
 }
