@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import "./Weather.css";
-
 import WeatherInfo from "./WeatherInfo";
 import axios from "axios";
 
 export default function Weather(props) {
-  const [ready, setReady] = useState(false);
+  // const [ready, setReady] = useState(false);
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
 
@@ -21,16 +20,7 @@ export default function Weather(props) {
       city: response.data.city,
     });
   }
-
-  // handle serch
-  function search() {
-    // city
-
-    let apiKey = "3b3ad749tf2ao70747b1aa602b14459d";
-    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
-    axios.get(apiUrl).then(handleResponse);
-  }
-
+  // handle submit
   function handleSubmit(event) {
     event.preventDefault();
     // search for a city
@@ -39,6 +29,15 @@ export default function Weather(props) {
 
   function handleCityChange(event) {
     setCity(event.target.value);
+  }
+
+  // handle serch
+  function search() {
+    // city
+
+    let apiKey = "3b3ad749tf2ao70747b1aa602b14459d";
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}`;
+    axios.get(apiUrl).then(handleResponse);
   }
 
   if (weatherData.ready) {
@@ -59,7 +58,7 @@ export default function Weather(props) {
               <input
                 type="submit"
                 value="Search"
-                className="btn btn-primary w-100"
+                className="btn btn-primary w-120"
               />
             </div>
           </div>
