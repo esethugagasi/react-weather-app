@@ -1,7 +1,9 @@
 .WeatherForecast {
   text-align: center;
+  color: #5a72a0;
 }
 .WaetherForecat-temperature-min {
   opacity: 0.6;
   margin-left: 5px;
+  color: #1a2130;
 }

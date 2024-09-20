@@ -12,7 +12,7 @@ export default function App() {
           <a href="https://esethugagasi-porftlio.netlify.app" target="_blank">
             Esethu Gagasi
           </a>{" "}
-          and is
+          and is{" "}
           <a
             href="https://github.com/esethugagasi/react-weather-app"
             target="_blank"
